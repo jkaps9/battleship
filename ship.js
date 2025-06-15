@@ -1,10 +1,14 @@
 class Ship {
-  size = 0;
+  size = 1;
   numberOfHits = 0;
-  isSunk = false;
+  sunk = false;
 
   hit() {
     this.numberOfHits++;
+  }
+
+  isSunk() {
+    return this.numberOfHits >= this.size;
   }
 }
 

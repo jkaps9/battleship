@@ -26,3 +26,10 @@ it("Ship can increment hits", () => {
   ship.hit();
   expect(ship.numberOfHits).toBe(1);
 });
+
+it("Ship calculates whether it is sunk", () => {
+  const ship = new Ship();
+  expect(ship.isSunk()).toBe(false);
+  ship.hit();
+  expect(ship.isSunk()).toBe(true);
+});
