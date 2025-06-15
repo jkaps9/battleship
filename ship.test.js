@@ -19,3 +19,10 @@ it("Ship class has a boolean whether it is sunk", () => {
   const ship = new Ship();
   expect(ship).toHaveProperty("isSunk");
 });
+
+it("Ship can increment hits", () => {
+  const ship = new Ship();
+  expect(ship.numberOfHits).toBe(0);
+  ship.hit();
+  expect(ship.numberOfHits).toBe(1);
+});
