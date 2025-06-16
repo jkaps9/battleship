@@ -54,6 +54,7 @@ class Game {
     // get random starting coordinates for each
     // get random orientation (0/1)
     // ensure ships doesn't intersect
+    const gameboard = this.players[0].gameboard;
     const lengths = [5, 4, 3, 3, 2];
 
     let currLength = lengths.shift();
@@ -68,13 +69,22 @@ class Game {
       let col = Math.floor(
         Math.random() * (orientation === 1 ? 10 - currLength : 10)
       );
-      this.players[0].gameboard.placeShip(
-        row,
-        col,
-        orientation === 0 ? row + currLength - 1 : row,
-        orientation === 1 ? col + currLength - 1 : col
-      );
-      currLength = lengths.shift();
+      if (
+        !gameboard.checkCollision(
+          row,
+          col,
+          orientation === 0 ? row + currLength - 1 : row,
+          orientation === 1 ? col + currLength - 1 : col
+        )
+      ) {
+        gameboard.placeShip(
+          row,
+          col,
+          orientation === 0 ? row + currLength - 1 : row,
+          orientation === 1 ? col + currLength - 1 : col
+        );
+        currLength = lengths.shift();
+      }
     }
   }
 

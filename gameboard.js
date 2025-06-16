@@ -33,6 +33,16 @@ class Gameboard {
     });
     return reduced.length === 0;
   }
+
+  checkCollision(rowStart, colStart, rowEnd, colEnd) {
+    //untested
+    for (let i = rowStart; i <= rowEnd; i++) {
+      for (let j = colStart; j <= colEnd; j++) {
+        if (this.grid[i][j] instanceof Ship) return true;
+      }
+    }
+    return false;
+  }
 }
 
 export { Gameboard };
