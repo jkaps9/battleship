@@ -60,7 +60,7 @@ class DisplayController {
       this.#displayBoards();
     });
 
-    if (this.game.players[0] !== "human") {
+    if (this.game.players[0].playerType !== "human") {
       this.playerOneBoard.querySelectorAll("button").forEach((btn) => {
         btn.addEventListener("click", () => {
           let row = btn.getAttribute("data-row");
@@ -77,7 +77,7 @@ class DisplayController {
         });
       });
     }
-    if (this.game.players[1] !== "human") {
+    if (this.game.players[1].playerType !== "human") {
       this.playerTwoBoard.querySelectorAll("button").forEach((btn) => {
         btn.addEventListener("click", () => {
           let row = btn.getAttribute("data-row");
@@ -86,7 +86,7 @@ class DisplayController {
           this.#displayBoards();
           let winner = this.game.getWinner();
           if (winner !== null) {
-            console.log(`${winner.type} wins!`);
+            console.log(`${winner.playerType} wins!`);
           } else {
             this.game.computerTurn();
             this.#displayBoards();

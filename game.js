@@ -10,29 +10,29 @@ class Game {
   #predeterminedGrid() {
     const rand = Math.floor(Math.random() * 8);
     const coords = [
-      {
-        startRow: 0,
-        startCol: 0,
-        endRow: 0,
-        endCol: 4,
-      },
-      {
-        startRow: 4,
-        startCol: 1,
-        endRow: 4,
-        endCol: 4,
-      },
-      {
-        startRow: 6,
-        startCol: 7,
-        endRow: 8,
-        endCol: 7,
-      },
+      // {
+      //   startRow: 0,
+      //   startCol: 0,
+      //   endRow: 0,
+      //   endCol: 4,
+      // },
+      // {
+      //   startRow: 4,
+      //   startCol: 1,
+      //   endRow: 4,
+      //   endCol: 4,
+      // },
+      // {
+      //   startRow: 6,
+      //   startCol: 7,
+      //   endRow: 8,
+      //   endCol: 7,
+      // },
       {
         startRow: rand,
-        startCol: 9,
+        startCol: rand,
         endRow: rand + 2,
-        endCol: 9,
+        endCol: rand,
       },
     ];
 
