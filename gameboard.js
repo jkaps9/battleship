@@ -19,6 +19,7 @@ class Gameboard {
     } else if (this.grid[row][col] !== "m") {
       //not a miss
       this.grid[row][col].hit();
+      this.grid[row][col] = "x";
     }
   }
 }
