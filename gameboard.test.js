@@ -27,6 +27,11 @@ describe("Gameboard", () => {
   });
 
   it("can place ships in the grid", () => {
-    gameboard.placeShip(x, y, size);
+    gameboard.placeShip(0, 0, 0, 4);
+    expect(gameboard.grid[0][0]).toBe("s");
+    expect(gameboard.grid[0][1]).toBe("s");
+    expect(gameboard.grid[0][2]).toBe("s");
+    expect(gameboard.grid[0][3]).toBe("s");
+    expect(gameboard.grid[0][4]).toBe("s");
   });
 });
