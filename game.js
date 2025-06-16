@@ -4,7 +4,8 @@ import { Ship } from "./ship.js";
 class Game {
   constructor() {
     this.players = [new Player("human"), new Player("computer")];
-    this.#predeterminedGrid();
+    // this.#predeterminedGrid();
+    this.#randomizedGrid();
   }
 
   #predeterminedGrid() {
@@ -46,6 +47,32 @@ class Game {
         );
       }
     }
+  }
+
+  #randomizedGrid() {
+    // one ship of each type (lenghts of 5, 4 , 3, 3, 2)
+    // get random starting coordinates for each
+    // get random orientation (0/1)
+    // ensure ships doesn't intersect
+    const lengths = [5, 4, 3, 3, 2];
+
+    let currLength = lengths.shift();
+
+    // 0 = horizontal; 1 = vertical
+    let orientation = Math.round(Math.random());
+
+    let row = Math.floor(
+      Math.random() * (orientation === 0 ? 10 - currLength : 10)
+    );
+    let col = Math.floor(
+      Math.random() * (orientation === 1 ? 10 - currLength : 10)
+    );
+    this.players[0].gameboard.placeShip(
+      row,
+      col,
+      orientation === 0 ? row + currLength - 1 : row,
+      orientation === 1 ? col + currLength - 1 : col
+    );
   }
 
   #dumbComputerTurn() {
