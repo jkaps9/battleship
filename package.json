@@ -8,6 +8,5 @@
   "scripts": {
     "test": "jest",
     "watch": "jest --watch ./*.test.js"
-  },
-  "type": "module"
+  }
 }
