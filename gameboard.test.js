@@ -1,4 +1,5 @@
-import { Gameboard } from "./gameboard.js";
+import { Gameboard } from "./gameboard";
+import { Ship } from "./ship";
 
 describe("Gameboard", () => {
   let gameboard;
@@ -28,11 +29,11 @@ describe("Gameboard", () => {
 
   it("can place ships in the grid", () => {
     gameboard.placeShip(0, 0, 0, 4);
-    expect(gameboard.grid[0][0]).toBe("s");
-    expect(gameboard.grid[0][1]).toBe("s");
-    expect(gameboard.grid[0][2]).toBe("s");
-    expect(gameboard.grid[0][3]).toBe("s");
-    expect(gameboard.grid[0][4]).toBe("s");
+    expect(gameboard.grid[0][0]).toBeInstanceOf(Ship);
+    expect(gameboard.grid[0][1]).toBeInstanceOf(Ship);
+    expect(gameboard.grid[0][2]).toBeInstanceOf(Ship);
+    expect(gameboard.grid[0][3]).toBeInstanceOf(Ship);
+    expect(gameboard.grid[0][4]).toBeInstanceOf(Ship);
   });
 
   it("can record a miss", () => {
@@ -44,5 +45,10 @@ describe("Gameboard", () => {
     gameboard.placeShip(0, 0, 0, 4);
     gameboard.receiveAttack(0, 2);
     expect(gameboard.grid[0][2]).toBe("x");
+  });
+
+  it("sends hit function to ship on hit", () => {
+    gameboard.placeShip(0, 0, 0, 4);
+    gameboard.receiveAttack(0, 2);
   });
 });

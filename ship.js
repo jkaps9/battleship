@@ -1,7 +1,10 @@
 class Ship {
-  size = 1;
   numberOfHits = 0;
   sunk = false;
+
+  constructor(size = 1) {
+    this.size = size;
+  }
 
   hit() {
     this.numberOfHits++;

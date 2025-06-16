@@ -1,18 +1,22 @@
+import { Ship } from "./ship";
+
 class Gameboard {
   grid = Array.from({ length: 10 }, () => new Array(10).fill(0));
 
   placeShip(rowStart, colStart, rowEnd, colEnd) {
+    let ship = new Ship();
     for (let i = rowStart; i <= rowEnd; i++) {
       for (let j = colStart; j <= colEnd; j++) {
-        this.grid[i][j] = "s";
+        this.grid[i][j] = ship;
       }
     }
   }
 
   receiveAttack(row, col) {
-    if (this.grid[row][col] !== "s") {
+    if (this.grid[row][col] === 0) {
       this.grid[row][col] = "m";
-    } else {
+    } else if (this.grid[row][col] !== "m") {
+      //not a miss
       this.grid[row][col] = "x";
     }
   }
