@@ -39,4 +39,10 @@ describe("Gameboard", () => {
     gameboard.receiveAttack(5, 5);
     expect(gameboard.grid[5][5]).toBe("m");
   });
+
+  it("can record a hit", () => {
+    gameboard.placeShip(0, 0, 0, 4);
+    gameboard.receiveAttack(0, 2);
+    expect(gameboard.grid[0][2]).toBe("x");
+  });
 });
