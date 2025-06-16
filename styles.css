@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.boards {
+  flex: 1;
+  display: flex;
+  gap: 48px;
+}
+
+#player-one-board,
+#player-two-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 2px solid black;
+}
+
+button {
+  appearance: none;
+  outline: none;
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+}
