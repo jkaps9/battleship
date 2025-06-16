@@ -1,10 +1,10 @@
 import { Player } from "./player.js";
 
-const Game = function () {
-  const playerOne = new Player("human");
-  const playerTwo = new Player("computer");
+class Game {
+  playerOne = new Player("human");
+  playerTwo = new Player("computer");
 
-  const predeterminedGrid = function () {
+  predeterminedGrid() {
     const coords = [
       {
         startRow: 0,
@@ -27,20 +27,20 @@ const Game = function () {
     ];
 
     for (let i = 0; i < coords.length; i++) {
-      playerOne.gameboard.placeShip(
+      this.playerOne.gameboard.placeShip(
         coords[i].startRow,
         coords[i].startCol,
         coords[i].endRow,
         coords[i].endCol
       );
-      playerTwo.gameboard.placeShip(
+      this.playerTwo.gameboard.placeShip(
         coords[i].startRow,
         coords[i].startCol,
         coords[i].endRow,
         coords[i].endCol
       );
     }
-  };
-};
+  }
+}
 
 export { Game };

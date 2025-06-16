@@ -5,6 +5,26 @@ body {
   align-items: center;
 }
 
+button {
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#new-game {
+  margin-bottom: 20px;
+  padding: 8px 28px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+#new-game:hover {
+  background-color: green;
+  color: white;
+  border-color: green;
+}
+
 .boards {
   flex: 1;
   display: flex;
@@ -16,17 +36,18 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   border: 2px solid black;
-}
 
-button {
-  appearance: none;
-  outline: none;
-  border: 1px solid black;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
+  button {
+    border: 1px solid black;
+    height: 30px;
+    width: 30px;
+  }
 
-button:hover {
-  background-color: #c3c3c3;
+  .ship {
+    background-color: blue;
+  }
+
+  button:hover {
+    background-color: #c3c3c3;
+  }
 }
