@@ -41,7 +41,7 @@ class DisplayController {
         square.className = "";
         if (p2board[i][j] === 0) {
         } else if (p2board[i][j] instanceof Ship) {
-          square.classList.add("ship");
+          //   square.classList.add("ship");
         } else if (p2board[i][j] === "m") {
           square.classList.add("miss");
         } else if (p2board[i][j] === "x") {
@@ -64,6 +64,8 @@ class DisplayController {
           let column = btn.getAttribute("data-column");
           this.game.playerOne.gameboard.receiveAttack(row, column);
           this.#displayBoards();
+          this.game.computerTurn();
+          this.#displayBoards();
         });
       });
     }
@@ -73,6 +75,8 @@ class DisplayController {
           let row = btn.getAttribute("data-row");
           let column = btn.getAttribute("data-column");
           this.game.playerTwo.gameboard.receiveAttack(row, column);
+          this.#displayBoards();
+          this.game.computerTurn();
           this.#displayBoards();
         });
       });
