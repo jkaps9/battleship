@@ -58,7 +58,7 @@ class Game {
     ) {
       this.#dumbComputerTurn();
     } else {
-      this.players[0].gameboard.receiveAttack(rand1, rand2);
+      this.playRound(rand1, rand2, 0);
     }
   }
 
@@ -66,7 +66,7 @@ class Game {
     this.#dumbComputerTurn();
   }
 
-  getWinner() {
+  #getWinner() {
     if (this.players[0].gameboard.allShipsSunk()) return this.players[1];
     else if (this.players[1].gameboard.allShipsSunk()) return this.players[0];
     else return null;
@@ -74,6 +74,24 @@ class Game {
 
   getBoards() {
     return [this.players[0].gameboard.grid, this.players[1].gameboard.grid];
+  }
+
+  playRound(row, column, playerIndex) {
+    // the "active" player is actually the one under attack...
+    // may want to change the naming convention in the future
+    // player issues an attack on the opposing player
+    // check if all of opposing players ships are sunk
+    // if so game is over, set activeplayer to null
+    // otherwise switch active player
+    let winner = this.#getWinner();
+    if (winner === null) {
+      console.log(
+        `${this.players[playerIndex].playerType} is attacked at (${row}, ${column})`
+      );
+      this.players[playerIndex].gameboard.receiveAttack(row, column);
+      winner = this.#getWinner();
+    }
+    return winner;
   }
 }
 
