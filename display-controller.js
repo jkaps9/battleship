@@ -65,7 +65,7 @@ class DisplayController {
       let winner = _this.game.getWinner();
       console.log(winner);
       if (winner !== null) {
-        alert("winner winner!");
+        console.log("winner winner!");
       } else {
         this.game.computerTurn();
         this.displayBoards();

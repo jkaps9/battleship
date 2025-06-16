@@ -2,10 +2,8 @@ import { Player } from "./player.js";
 import { Ship } from "./ship.js";
 
 class Game {
-  playerOne = new Player("human");
-  playerTwo = new Player("computer");
-
   constructor() {
+    this.players = [new Player("human"), new Player("computer")];
     this.#predeterminedGrid();
   }
 
@@ -38,32 +36,29 @@ class Game {
       },
     ];
 
-    for (let i = 0; i < coords.length; i++) {
-      this.playerOne.gameboard.placeShip(
-        coords[i].startRow,
-        coords[i].startCol,
-        coords[i].endRow,
-        coords[i].endCol
-      );
-      this.playerTwo.gameboard.placeShip(
-        coords[i].startRow,
-        coords[i].startCol,
-        coords[i].endRow,
-        coords[i].endCol
-      );
+    for (let p = 0; p < this.players.length; p++) {
+      for (let i = 0; i < coords.length; i++) {
+        this.players[p].gameboard.placeShip(
+          coords[i].startRow,
+          coords[i].startCol,
+          coords[i].endRow,
+          coords[i].endCol
+        );
+      }
     }
   }
 
   #dumbComputerTurn() {
+    //computer is always player 2 for now
     const rand1 = Math.floor(Math.random() * 10);
     const rand2 = Math.floor(Math.random() * 10);
     if (
-      this.playerOne.gameboard.grid[rand1][rand2] === "m" ||
-      this.playerOne.gameboard.grid[rand1][rand2] === "x"
+      this.players[0].gameboard.grid[rand1][rand2] === "m" ||
+      this.players[0].gameboard.grid[rand1][rand2] === "x"
     ) {
       this.#dumbComputerTurn();
     } else {
-      this.playerOne.gameboard.receiveAttack(rand1, rand2);
+      this.players[0].gameboard.receiveAttack(rand1, rand2);
     }
   }
 
@@ -72,8 +67,8 @@ class Game {
   }
 
   getWinner() {
-    if (this.playerOne.gameboard.allShipsSunk()) return this.playerTwo;
-    else if (this.playerTwo.gameboard.allShipsSunk()) return this.playerOne;
+    if (this.players[0].gameboard.allShipsSunk()) return players[1];
+    else if (this.players[1].gameboard.allShipsSunk()) return players[0];
     else return null;
   }
 }
