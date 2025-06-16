@@ -16,7 +16,7 @@ class Gameboard {
   receiveAttack(row, col) {
     if (this.grid[row][col] === 0) {
       this.grid[row][col] = "m";
-    } else if (this.grid[row][col] !== "m") {
+    } else if (this.grid[row][col] !== "m" && this.grid[row][col] !== "x") {
       //not a miss
       this.grid[row][col].hit();
       this.grid[row][col] = "x";

@@ -70,6 +70,12 @@ class Game {
   computerTurn() {
     this.#dumbComputerTurn();
   }
+
+  getWinner() {
+    if (this.playerOne.gameboard.allShipsSunk()) return this.playerTwo;
+    else if (this.playerTwo.gameboard.allShipsSunk()) return this.playerOne;
+    else return null;
+  }
 }
 
 export { Game };

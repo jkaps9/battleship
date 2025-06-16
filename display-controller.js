@@ -8,11 +8,11 @@ class DisplayController {
 
   constructor() {
     this.game = new Game();
-    this.#displayBoards();
+    this.displayBoards();
     this.#addEventListeners();
   }
 
-  #displayBoards() {
+  displayBoards() {
     const p1board = this.game.playerOne.gameboard.grid;
     const p2board = this.game.playerTwo.gameboard.grid;
 
@@ -54,34 +54,43 @@ class DisplayController {
   #addEventListeners() {
     this.newGameButton.addEventListener("click", () => {
       this.game = new Game();
-      this.#displayBoards();
+      this.displayBoards();
     });
+
+    function clickAttack(gameboard, btn) {
+      let row = btn.getAttribute("data-row");
+      let column = btn.getAttribute("data-column");
+      gameboard.receiveAttack(row, column);
+      this.displayBoards();
+      let winner = _this.game.getWinner();
+      console.log(winner);
+      if (winner !== null) {
+        alert("winner winner!");
+      } else {
+        this.game.computerTurn();
+        this.displayBoards();
+      }
+    }
 
     if (this.game.playerOne.playerType !== "human") {
       this.playerOneBoard.querySelectorAll("button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          let row = btn.getAttribute("data-row");
-          let column = btn.getAttribute("data-column");
-          this.game.playerOne.gameboard.receiveAttack(row, column);
-          this.#displayBoards();
-          this.game.computerTurn();
-          this.#displayBoards();
-        });
+        btn.addEventListener(
+          "click",
+          clickAttack(this.game.playerOne.gameboard, btn)
+        );
       });
     }
     if (this.game.playerTwo.playerType !== "human") {
       this.playerTwoBoard.querySelectorAll("button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          let row = btn.getAttribute("data-row");
-          let column = btn.getAttribute("data-column");
-          this.game.playerTwo.gameboard.receiveAttack(row, column);
-          this.#displayBoards();
-          this.game.computerTurn();
-          this.#displayBoards();
-        });
+        btn.addEventListener(
+          "click",
+          clickAttack(this.game.playerTwo.gameboard, btn)
+        );
       });
     }
   }
+
+  #removeEventListeners() {}
 }
 
 export { DisplayController };
