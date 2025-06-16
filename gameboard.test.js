@@ -34,4 +34,9 @@ describe("Gameboard", () => {
     expect(gameboard.grid[0][3]).toBe("s");
     expect(gameboard.grid[0][4]).toBe("s");
   });
+
+  it("can record a miss", () => {
+    gameboard.receiveAttack(5, 5);
+    expect(gameboard.grid[5][5]).toBe("m");
+  });
 });

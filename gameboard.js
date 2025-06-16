@@ -8,6 +8,12 @@ class Gameboard {
       }
     }
   }
+
+  receiveAttack(row, col) {
+    if (this.grid[row][col] !== "s") {
+      this.grid[row][col] = "m";
+    }
+  }
 }
 
 export { Gameboard };
