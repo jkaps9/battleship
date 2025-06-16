@@ -67,9 +67,13 @@ class Game {
   }
 
   getWinner() {
-    if (this.players[0].gameboard.allShipsSunk()) return players[1];
-    else if (this.players[1].gameboard.allShipsSunk()) return players[0];
+    if (this.players[0].gameboard.allShipsSunk()) return this.players[1];
+    else if (this.players[1].gameboard.allShipsSunk()) return this.players[0];
     else return null;
+  }
+
+  getBoards() {
+    return [this.players[0].gameboard.grid, this.players[1].gameboard.grid];
   }
 }
 

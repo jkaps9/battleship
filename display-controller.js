@@ -8,13 +8,14 @@ class DisplayController {
 
   constructor() {
     this.game = new Game();
-    this.displayBoards();
+    this.#displayBoards();
     this.#addEventListeners();
   }
 
-  displayBoards() {
-    const p1board = this.game.playerOne.gameboard.grid;
-    const p2board = this.game.playerTwo.gameboard.grid;
+  #displayBoards() {
+    const boards = this.game.getBoards();
+    const p1board = boards[0];
+    const p2board = boards[1];
 
     for (let i = 0; i < p1board.length; i++) {
       for (let j = 0; j < p1board[i].length; j++) {
@@ -41,6 +42,8 @@ class DisplayController {
         square.className = "";
         if (p2board[i][j] === 0) {
         } else if (p2board[i][j] instanceof Ship) {
+          // player 2 is the computer,
+          // don't want to show their ships to the player
           //   square.classList.add("ship");
         } else if (p2board[i][j] === "m") {
           square.classList.add("miss");
@@ -54,38 +57,41 @@ class DisplayController {
   #addEventListeners() {
     this.newGameButton.addEventListener("click", () => {
       this.game = new Game();
-      this.displayBoards();
+      this.#displayBoards();
     });
 
-    function clickAttack(gameboard, btn) {
-      let row = btn.getAttribute("data-row");
-      let column = btn.getAttribute("data-column");
-      gameboard.receiveAttack(row, column);
-      this.displayBoards();
-      let winner = _this.game.getWinner();
-      console.log(winner);
-      if (winner !== null) {
-        console.log("winner winner!");
-      } else {
-        this.game.computerTurn();
-        this.displayBoards();
-      }
-    }
-
-    if (this.game.playerOne.playerType !== "human") {
+    if (this.game.players[0] !== "human") {
       this.playerOneBoard.querySelectorAll("button").forEach((btn) => {
-        btn.addEventListener(
-          "click",
-          clickAttack(this.game.playerOne.gameboard, btn)
-        );
+        btn.addEventListener("click", () => {
+          let row = btn.getAttribute("data-row");
+          let column = btn.getAttribute("data-column");
+          this.game.players[0].gameboard.receiveAttack(row, column);
+          this.#displayBoards();
+          let winner = this.game.getWinner();
+          if (winner !== null) {
+            console.log(`${winner.type} wins!`);
+          } else {
+            this.game.computerTurn();
+            this.#displayBoards();
+          }
+        });
       });
     }
-    if (this.game.playerTwo.playerType !== "human") {
+    if (this.game.players[1] !== "human") {
       this.playerTwoBoard.querySelectorAll("button").forEach((btn) => {
-        btn.addEventListener(
-          "click",
-          clickAttack(this.game.playerTwo.gameboard, btn)
-        );
+        btn.addEventListener("click", () => {
+          let row = btn.getAttribute("data-row");
+          let column = btn.getAttribute("data-column");
+          this.game.players[1].gameboard.receiveAttack(row, column);
+          this.#displayBoards();
+          let winner = this.game.getWinner();
+          if (winner !== null) {
+            console.log(`${winner.type} wins!`);
+          } else {
+            this.game.computerTurn();
+            this.#displayBoards();
+          }
+        });
       });
     }
   }
