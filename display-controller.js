@@ -25,7 +25,10 @@ class DisplayController {
         square.className = "";
         if (p1board[i][j] == 0) {
         } else if (p1board[i][j] instanceof Ship) {
-          square.classList.add("ship");
+          if (p1board[i][j].size === 5) square.classList.add("ship-5");
+          if (p1board[i][j].size === 4) square.classList.add("ship-4");
+          if (p1board[i][j].size === 3) square.classList.add("ship-3");
+          if (p1board[i][j].size === 2) square.classList.add("ship-2");
         } else if (p1board[i][j] === "m") {
           square.classList.add("miss");
         } else if (p1board[i][j] === "x") {
