@@ -1,4 +1,4 @@
-import { Ship } from "./ship";
+import { Ship } from "./ship.js";
 
 class Gameboard {
   grid = Array.from({ length: 10 }, () => new Array(10).fill(0));
