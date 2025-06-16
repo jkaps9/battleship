@@ -22,6 +22,17 @@ class Gameboard {
       this.grid[row][col] = "x";
     }
   }
+
+  allShipsSunk() {
+    const reduced = this.grid.filter((arr) => {
+      return (
+        arr.filter((value) => {
+          return value instanceof Ship;
+        }).length > 0
+      );
+    });
+    return reduced.length === 0;
+  }
 }
 
 export { Gameboard };
