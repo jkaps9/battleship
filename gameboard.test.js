@@ -41,14 +41,14 @@ describe("Gameboard", () => {
     expect(gameboard.grid[5][5]).toBe("m");
   });
 
-  it("can record a hit", () => {
-    gameboard.placeShip(0, 0, 0, 4);
-    gameboard.receiveAttack(0, 2);
-    expect(gameboard.grid[0][2]).toBe("x");
-  });
-
   it("sends hit function to ship on hit", () => {
+    // currently checking if ships hit counter has incremented
+    // but I should really be just checking to see if hit function is called
+    // TODO: figure out how to do above
     gameboard.placeShip(0, 0, 0, 4);
+    const ship = gameboard.grid[0][2];
+    const hits = ship.numberOfHits;
     gameboard.receiveAttack(0, 2);
+    expect(ship.numberOfHits).toBe(hits + 1);
   });
 });
