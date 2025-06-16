@@ -1,6 +1,32 @@
 import { Gameboard } from "./gameboard.js";
 
-it("Gameboard class exists", () => {
-  const gameboard = new Gameboard();
-  expect(gameboard).toBeDefined();
+describe("Gameboard", () => {
+  let gameboard;
+
+  beforeEach(() => {
+    gameboard = new Gameboard();
+  });
+
+  it("class exists", () => {
+    expect(gameboard).toBeDefined();
+  });
+
+  it("grid is 10x10", () => {
+    expect(gameboard.grid.length).toBe(10);
+    for (let i = 0; i < gameboard.grid.length; i++) {
+      expect(gameboard.grid[i].length).toBe(10);
+    }
+  });
+
+  it("grid instantiates full of zeros", () => {
+    for (let i = 0; i < gameboard.grid.length; i++) {
+      for (let j = 0; j < gameboard.grid.length; j++) {
+        expect(gameboard.grid[i][j]).toBe(0);
+      }
+    }
+  });
+
+  it("can place ships in the grid", () => {
+    gameboard.placeShip(x, y, size);
+  });
 });
