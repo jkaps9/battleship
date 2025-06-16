@@ -4,7 +4,11 @@ class Game {
   playerOne = new Player("human");
   playerTwo = new Player("computer");
 
-  predeterminedGrid() {
+  constructor() {
+    this.#predeterminedGrid();
+  }
+
+  #predeterminedGrid() {
     const coords = [
       {
         startRow: 0,
