@@ -41,13 +41,22 @@ button {
     border: 1px solid black;
     height: 30px;
     width: 30px;
+    background-color: transparent;
+  }
+
+  button:hover {
+    background-color: #c3c3c3;
   }
 
   .ship {
     background-color: blue;
   }
 
-  button:hover {
-    background-color: #c3c3c3;
+  .miss {
+    background-color: darkslategrey;
+  }
+
+  .hit {
+    background-color: red;
   }
 }
