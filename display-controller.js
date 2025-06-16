@@ -38,6 +38,7 @@ class DisplayController {
         const square = this.playerTwoBoard.querySelector(
           `[data-row='${i}'][data-column='${j}']`
         );
+        square.className = "";
         if (p2board[i][j] === 0) {
         } else if (p2board[i][j] instanceof Ship) {
           square.classList.add("ship");
@@ -56,23 +57,26 @@ class DisplayController {
       this.#displayBoards();
     });
 
-    this.playerOneBoard.querySelectorAll("button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        let row = btn.getAttribute("data-row");
-        let column = btn.getAttribute("data-column");
-        this.game.playerOne.gameboard.receiveAttack(row, column);
-        this.#displayBoards();
+    if (this.game.playerOne.playerType !== "human") {
+      this.playerOneBoard.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          let row = btn.getAttribute("data-row");
+          let column = btn.getAttribute("data-column");
+          this.game.playerOne.gameboard.receiveAttack(row, column);
+          this.#displayBoards();
+        });
       });
-    });
-
-    this.playerTwoBoard.querySelectorAll("button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        let row = btn.getAttribute("data-row");
-        let column = btn.getAttribute("data-column");
-        this.game.playerTwo.gameboard.receiveAttack(row, column);
-        this.#displayBoards();
+    }
+    if (this.game.playerTwo.playerType !== "human") {
+      this.playerTwoBoard.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          let row = btn.getAttribute("data-row");
+          let column = btn.getAttribute("data-column");
+          this.game.playerTwo.gameboard.receiveAttack(row, column);
+          this.#displayBoards();
+        });
       });
-    });
+    }
   }
 }
 
