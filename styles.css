@@ -9,26 +9,38 @@ button {
   appearance: none;
   outline: none;
   cursor: pointer;
+  border: 1px solid black;
+  background-color: transparent;
 }
 
 #new-game {
   margin-bottom: 20px;
   padding: 8px 28px;
-  border: 1px solid black;
   border-radius: 4px;
-  background-color: transparent;
 }
 
-#new-game:hover {
-  background-color: green;
+#new-game:hover,
+#randomize:hover {
+  background-color: black;
   color: white;
-  border-color: green;
 }
 
 .boards {
   flex: 1;
   display: flex;
   gap: 48px;
+
+  h2 {
+    margin-bottom: 4px;
+  }
+}
+
+#randomize {
+  border-width: 1px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 #player-one-board,
@@ -38,14 +50,8 @@ button {
   border: 2px solid black;
 
   button {
-    border: 1px solid black;
     height: 30px;
     width: 30px;
-    background-color: transparent;
-  }
-
-  button:hover {
-    background-color: #c3c3c3;
   }
 
   .ship-5 {
@@ -71,4 +77,12 @@ button {
   .hit {
     background-color: red;
   }
+}
+
+#player-one-board button {
+  cursor: default;
+}
+
+#player-two-board button:hover {
+  background-color: #c3c3c3;
 }
