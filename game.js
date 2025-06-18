@@ -57,6 +57,7 @@ class Game {
     // get random orientation (0/1)
     // ensure ships doesn't intersect
     const gameboard = player.gameboard;
+    gameboard.clearGrid();
     const lengths = [5, 4, 3, 3, 2];
 
     let currLength = lengths.shift();

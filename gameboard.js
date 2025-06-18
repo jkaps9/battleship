@@ -43,6 +43,11 @@ class Gameboard {
     }
     return false;
   }
+
+  clearGrid() {
+    //untested
+    this.grid = Array.from({ length: 10 }, () => new Array(10).fill(0));
+  }
 }
 
 export { Gameboard };
