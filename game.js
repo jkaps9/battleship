@@ -5,7 +5,9 @@ class Game {
   constructor() {
     this.players = [new Player("human"), new Player("computer")];
     // this.#predeterminedGrid();
-    this.#randomizedGrid();
+    this.players.forEach((p) => {
+      this.#randomizedGrid(p);
+    });
   }
 
   #predeterminedGrid() {
@@ -49,12 +51,12 @@ class Game {
     }
   }
 
-  #randomizedGrid() {
+  #randomizedGrid(player) {
     // one ship of each type (lenghts of 5, 4 , 3, 3, 2)
     // get random starting coordinates for each
     // get random orientation (0/1)
     // ensure ships doesn't intersect
-    const gameboard = this.players[0].gameboard;
+    const gameboard = player.gameboard;
     const lengths = [5, 4, 3, 3, 2];
 
     let currLength = lengths.shift();
