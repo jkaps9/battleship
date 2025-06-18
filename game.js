@@ -52,13 +52,13 @@ class Game {
   }
 
   randomizedGrid(player) {
-    // one ship of each type (lenghts of 5, 4 , 3, 3, 2)
+    // one ship of each type (lenghts of 5, 4 , 3, 2)
     // get random starting coordinates for each
     // get random orientation (0/1)
     // ensure ships doesn't intersect
     const gameboard = player.gameboard;
     gameboard.clearGrid();
-    const lengths = [5, 4, 3, 3, 2];
+    const lengths = [5, 4, 3, 2];
 
     let currLength = lengths.shift();
 
