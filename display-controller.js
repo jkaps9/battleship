@@ -5,6 +5,7 @@ class DisplayController {
   playerOneBoard = document.querySelector("#player-one-board");
   playerTwoBoard = document.querySelector("#player-two-board");
   newGameButton = document.querySelector("#new-game");
+  randomizeButton = document.querySelector("#randomize");
 
   constructor() {
     this.game = new Game();
@@ -77,9 +78,12 @@ class DisplayController {
         }
       });
     });
-  }
 
-  #removeEventListeners() {}
+    this.randomizeButton.addEventListener("click", () => {
+      this.game.randomizedGrid(this.game.players[0]);
+      this.#displayBoards();
+    });
+  }
 }
 
 export { DisplayController };

@@ -6,7 +6,7 @@ class Game {
     this.players = [new Player("human"), new Player("computer")];
     // this.#predeterminedGrid();
     this.players.forEach((p) => {
-      this.#randomizedGrid(p);
+      this.randomizedGrid(p);
     });
   }
 
@@ -51,7 +51,7 @@ class Game {
     }
   }
 
-  #randomizedGrid(player) {
+  randomizedGrid(player) {
     // one ship of each type (lenghts of 5, 4 , 3, 3, 2)
     // get random starting coordinates for each
     // get random orientation (0/1)
