@@ -79,6 +79,20 @@ button {
   }
 }
 
+.active {
+	transform-origin: top;
+  animation: scale 1.5s both;
+}
+
+@keyframes scale {
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
 #player-one-board button {
   cursor: default;
 }
