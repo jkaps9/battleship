@@ -73,8 +73,16 @@ class DisplayController {
         if (winner !== null) {
           console.log(`${winner.playerType} wins!`);
         } else {
-          this.game.computerTurn();
+	  this.playerOneBoard.classList.toggle("active");
+	  this.playerTwoBoard.classList.toggle("active");
+setTimeout(() => {
+  this.game.computerTurn();
           this.#displayBoards();
+	setTimeout(() => {
+	this.playerOneBoard.classList.toggle("active");
+          this.playerTwoBoard.classList.toggle("active");
+	}, 1000);
+}, 1000);
         }
       });
     });
