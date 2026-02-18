@@ -5,6 +5,12 @@ body {
   align-items: center;
 }
 
+
+.top-row {
+	display: flex;
+	justify-content: space-between;
+}
+
 button {
   appearance: none;
   outline: none;
