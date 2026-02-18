@@ -28,6 +28,7 @@ button {
 .boards {
   flex: 1;
   display: flex;
+  flex-direction: column;
   gap: 48px;
 
   h2 {
@@ -100,3 +101,10 @@ button {
 #player-two-board button:hover {
   background-color: #c3c3c3;
 }
+
+@media (min-width: 48rem) {
+	.boards {
+		flex-direction: row;
+	}
+}
+
